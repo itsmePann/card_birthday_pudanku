@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Her Special Day is Coming</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    .floating-heart {
+      position: absolute;
+      color: #F2A9C0;
+      animation: floatHeart linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes floatHeart {
+      from {
+        transform: translateY(100vh);
+        opacity: 1;
+      }
+
+      to {
+        transform: translateY(-120px);
+        opacity: 0;
+      }
+    }
+
+    .for-you {
+      margin-top: 8px;
+      color: #F2A9C0;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    .start-btn {
+      position: relative;
+      z-index: 999999;
+    }
+
+    .gold-particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #E8C87E;
+      box-shadow: 0 0 10px #E8C87E;
+      animation: floatGold linear infinite;
+    }
+
+    @keyframes floatGold {
+      from {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 1;
+      }
+
+      to {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+    }
+
+    .love-quote {
+      margin-top: 15px;
+      max-width: 280px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, .65);
+      font-style: italic;
+    }
+
+    .intro-stars {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    :root {
+      --night-deep: #160B2E;
+      --night-mid: #2A1852;
+      --twilight: #5B3B8C;
+      --gold: #E8C87E;
+      --gold-soft: #F3DFA8;
+      --blush: #F2A9C0;
+      --cream: #FBF3E7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      background: var(--night-deep);
+      overflow: hidden;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .stage {
+      position: relative;
+      width: 100%;
+      max-width: 430px;
+      height: 100vh;
+      max-height: 932px;
+      margin: 0 auto;
+      overflow: hidden;
+      background:
+        radial-gradient(120% 60% at 50% -10%, rgba(91, 59, 140, 0.55), transparent 60%),
+        linear-gradient(180deg, var(--night-deep) 0%, var(--night-mid) 55%, #1c0f38 100%);
+    }
+
+    /* ---------- Starfield ---------- */
+    .stars {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .star {
+      position: absolute;
+      background: var(--cream);
+      border-radius: 50%;
+      opacity: .6;
+      animation: twinkle 3.5s ease-in-out infinite;
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        opacity: .15;
+        transform: scale(.8);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.15);
+      }
+    }
+
+    .drift {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .spark {
+      position: absolute;
+      bottom: -5%;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold-soft);
+      box-shadow: 0 0 6px 2px rgba(232, 200, 126, .6);
+      animation: rise linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: .9;
+      }
+
+      90% {
+        opacity: .5;
+      }
+
+      100% {
+        transform: translateY(-105vh) translateX(20px);
+        opacity: 0;
+      }
+    }
+
+    /* ---------- Cake signature ---------- */
+    .feature-wrap {
+      position: absolute;
+      top: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      width: 240px;
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .halo {
+      position: absolute;
+      inset: -26px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(242, 169, 192, 0.10) 0%, rgba(232, 200, 126, 0.05) 45%, transparent 72%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: .8;
+      }
+
+      50% {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+    }
+
+    .cake-svg {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      filter: drop-shadow(0 10px 26px rgba(232, 200, 126, .4));
+    }
+
+    .flame {
+      transform-origin: 50% 100%;
+    }
+
+    .flame-glow {
+      filter: blur(4px);
+    }
+
+    .crumb {
+      animation: sparkle 2.4s ease-in-out infinite;
+    }
+
+    .crumb:nth-child(odd) {
+      animation-delay: .6s;
+    }
+
+    @keyframes sparkle {
+
+      0%,
+      100% {
+        opacity: .25;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    /* ---------- Content ---------- */
+    .content {
+      position: relative;
+      z-index: 4;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 28px 56px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: .42em;
+      color: var(--blush);
+      text-transform: uppercase;
+      opacity: .85;
+      margin-bottom: 14px;
+    }
+
+    .headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--cream);
+      font-size: clamp(30px, 8.4vw, 40px);
+      line-height: 1.12;
+      letter-spacing: .01em;
+    }
+
+    .headline .accent {
+      display: block;
+      color: var(--gold-soft);
+      font-size: clamp(34px, 9.6vw, 46px);
+      margin-top: 2px;
+    }
+
+    .subtitle {
+      margin-top: 16px;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(251, 243, 231, .75);
+      max-width: 280px;
+    }
+
+    .subtitle em {
+      font-style: normal;
+      color: var(--gold-soft);
+    }
+
+    /* ---------- Countdown ---------- */
+    .countdown {
+      margin-top: 34px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .unit {
+      width: 68px;
+      padding: 14px 0 10px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .02));
+      border: 1px solid rgba(232, 200, 126, .28);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .25), inset 0 0 12px rgba(232, 200, 126, .06);
+      position: relative;
+    }
+
+    .unit-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 26px;
+      color: var(--gold-soft);
+      letter-spacing: .02em;
+    }
+
+    .unit-label {
+      margin-top: 4px;
+      font-size: 9px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(251, 243, 231, .55);
+    }
+
+    .colon {
+      align-self: flex-start;
+      margin-top: 20px;
+      color: var(--gold-soft);
+      opacity: .5;
+      font-size: 20px;
+    }
+
+    .footer-note {
+      margin-top: 26px;
+      font-size: 11px;
+      letter-spacing: .08em;
+      color: rgba(251, 243, 231, .4);
+    }
+
+    .reveal-btn {
+      margin-top: 22px;
+      padding: 13px 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(232, 200, 126, .4);
+      background: transparent;
+      color: rgba(251, 243, 231, .45);
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      cursor: not-allowed;
+      transition: all .5s ease;
+    }
+
+    .reveal-btn.ready {
+      border: 1px solid var(--gold);
+      color: var(--gold-soft);
+      cursor: pointer;
+      box-shadow: 0 0 22px rgba(232, 200, 126, .35);
+      animation: fadeUp .8s ease;
+    }
+
+    .reveal-btn.ready:active {
+      transform: scale(.97);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ==========================
+   INTRO SCREEN
+========================== */
+
+    .intro-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background:
+        radial-gradient(circle at center,
+          rgba(91, 59, 140, .7),
+          #160B2E 70%);
+    }
+
+    .heart {
+      font-size: 90px;
+      position: relative;
+      animation: heartBeat 1.5s infinite;
+      filter: drop-shadow(0 0 2px);
+    }
+
+    .heart::before {
+      content: "";
+      position: absolute;
+      inset: -30px;
+      border-radius: 50%;
+      background: radial-gradient(circle,
+          rgba(246, 216, 255, 0.35),
+          transparent 70%);
+      z-index: -1;
+      animation: pulseGlow 2s infinite;
+    }
+
+    @keyframes pulseGlow {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: .6;
+      }
+
+      50% {
+        transform: scale(1.3);
+        opacity: 1;
+      }
+    }
+
+    @keyframes heartBeat {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.18);
+      }
+    }
+
+    .typing-name {
+      margin-top: 20px;
+      min-height: 70px;
+      color: var(--gold-soft);
+      font-size: 34px;
+      font-family: 'Cormorant Garamond', serif;
+      text-align: center;
+      max-width: 320px;
+    }
+
+    .intro-text {
+      margin-top: 10px;
+      color: rgba(255, 255, 255, .8);
+    }
+
+    .start-btn {
+      margin-top: 35px;
+      padding: 16px 42px;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(135deg,
+          #F3DFA8,
+          #E8C87E);
+      color: #160B2E;
+      font-weight: 600;
+      letter-spacing: .08em;
+      cursor: pointer;
+      transition: .4s;
+      box-shadow:
+        0 0 20px rgba(232, 200, 126, .4);
+    }
+
+    .start-btn:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 0 35px rgba(232, 200, 126, .8);
+    }
+
+    @media (max-width:360px) {
+      .unit {
+        width: 60px;
+      }
+
+      .subtitle {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="introScreen" class="intro-screen">
+    <div class="intro-stars" id="introStars"></div>
+    <div class="heart">💜</div>
+
+    <h1 id="typingName" class="typing-name"></h1>
+    <div class="for-you">
+      For Someone Special ✨
+    </div>
+
+    <p class="love-quote">
+      "Lihatlah, cantik engkau, manisku, sungguh cantik engkau, bagaiakan merpati matamu." ~Kidung Agung 1:15~
+    </p>
+
+    <button id="startBtn" class="start-btn">
+      Open My Heart
+    </button>
+  </div>
+  <div class="stage" id="stage" style="display:none;">
+
+    <audio id="bgMusic" src="shape-of-my-heart.mp3" loop preload="auto"></audio>
+
+    <div class="stars" id="stars"></div>
+    <div class="drift" id="drift"></div>
+
+    <div class="feature-wrap">
+      <div class="halo"></div>
+      <svg class="cake-svg" viewBox="0 -32 140 182" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="cakeTop" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FBF3E7" />
+            <stop offset="100%" stop-color="#F2A9C0" />
+          </linearGradient>
+          <linearGradient id="cakeMid" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#F8E3EC" />
+            <stop offset="100%" stop-color="#EFB9CE" />
+          </linearGradient>
+          <linearGradient id="cakeBase" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#F3DFA8" />
+            <stop offset="100%" stop-color="#E8C87E" />
+          </linearGradient>
+          <radialGradient id="flameGrad" cx="50%" cy="78%" r="75%">
+            <stop offset="0%" stop-color="#FFFBF0" />
+            <stop offset="45%" stop-color="#FFF3C4" />
+            <stop offset="80%" stop-color="#F3DFA8" />
+            <stop offset="100%" stop-color="#E8C87E" />
+          </radialGradient>
+          <linearGradient id="ribbonGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#E8C87E" />
+            <stop offset="100%" stop-color="#F2A9C0" />
+          </linearGradient>
+        </defs>
+
+        <!-- plate glow -->
+        <ellipse cx="70" cy="132" rx="52" ry="6" fill="#F2A9C0" opacity=".3" />
+
+        <!-- floating hearts -->
+        <path class="crumb" d="M16 46c-3-3-8-1-8 3 0 3 4 6 8 9 4-3 8-6 8-9 0-4-5-6-8-3Z" fill="#F2A9C0" opacity=".8" />
+        <path class="crumb"
+          d="M122 40c-2.4-2.4-6.4-.8-6.4 2.4 0 2.4 3.2 4.8 6.4 7.2 3.2-2.4 6.4-4.8 6.4-7.2 0-3.2-4-4.8-6.4-2.4Z"
+          fill="#F3DFA8" opacity=".85" />
+
+        <!-- candle -->
+        <rect x="64" y="10" width="12" height="26" rx="3" fill="#FBF3E7" />
+        <rect x="64" y="10" width="4" height="26" fill="#F2A9C0" opacity=".5" />
+        <line x1="70" y1="10" x2="70" y2="2" stroke="#8A6A46" stroke-width="1.3" stroke-linecap="round" />
+        <ellipse class="flame-glow" cx="70" cy="-8" rx="15" ry="17" fill="url(#flameGrad)" opacity=".3" />
+        <path class="flame" d="M70 -20 C 77 -12, 80 -4, 70 2 C 60 -4, 63 -12, 70 -20 Z" fill="url(#flameGrad)" />
+
+        <!-- top tier -->
+        <rect x="46" y="38" width="48" height="28" rx="10" fill="url(#cakeTop)" />
+        <circle cx="50" cy="38" r="3.4" fill="#FBF3E7" />
+        <circle cx="60" cy="37" r="3.4" fill="#FBF3E7" />
+        <circle cx="70" cy="36.5" r="3.6" fill="#FBF3E7" />
+        <circle cx="80" cy="37" r="3.4" fill="#FBF3E7" />
+        <circle cx="90" cy="38" r="3.4" fill="#FBF3E7" />
+
+        <!-- middle tier -->
+        <rect x="30" y="66" width="80" height="32" rx="11" fill="url(#cakeMid)" />
+        <circle cx="34" cy="66" r="3.8" fill="#FBF3E7" />
+        <circle cx="47" cy="65" r="3.8" fill="#FBF3E7" />
+        <circle cx="60" cy="64.4" r="4" fill="#FBF3E7" />
+        <circle cx="73" cy="65" r="3.8" fill="#FBF3E7" />
+        <circle cx="86" cy="65" r="3.8" fill="#FBF3E7" />
+        <circle cx="99" cy="66" r="3.8" fill="#FBF3E7" />
+        <path d="M32 82 q8-6 16 0 t16 0 t16 0 t16 0" stroke="#FBF3E7" stroke-width="2" fill="none" opacity=".55" />
+
+        <!-- base tier -->
+        <rect x="14" y="98" width="112" height="34" rx="12" fill="url(#cakeBase)" />
+        <rect x="14" y="112" width="112" height="9" fill="url(#ribbonGrad)" opacity=".85" />
+        <path d="M62 112 l8 4.5 l-8 4.5 l3-4.5 Z" fill="#FBF3E7" opacity=".9" />
+        <path d="M78 112 l-8 4.5 l8 4.5 l-3-4.5 Z" fill="#FBF3E7" opacity=".9" />
+
+        <!-- drips -->
+        <path d="M46 38 q4 12 -2 18" stroke="#F2A9C0" stroke-width="3" fill="none" stroke-linecap="round"
+          opacity=".55" />
+        <path d="M70 38 q3 14 0 20" stroke="#F2A9C0" stroke-width="3" fill="none" stroke-linecap="round"
+          opacity=".55" />
+        <path d="M94 38 q-4 12 2 18" stroke="#F2A9C0" stroke-width="3" fill="none" stroke-linecap="round"
+          opacity=".55" />
+
+        <!-- sparkle crumbs -->
+        <circle class="crumb" cx="8" cy="70" r="2.4" fill="#F3DFA8" />
+        <circle class="crumb" cx="132" cy="64" r="2.8" fill="#F2A9C0" />
+        <circle class="crumb" cx="20" cy="20" r="2" fill="#FBF3E7" />
+        <circle class="crumb" cx="118" cy="16" r="2.2" fill="#F3DFA8" />
+        <circle class="crumb" cx="6" cy="106" r="2" fill="#F2A9C0" />
+        <circle class="crumb" cx="134" cy="102" r="2.2" fill="#FBF3E7" />
+      </svg>
+    </div>
+
+    <div class="content">
+      <div class="eyebrow">A moment just for you</div>
+
+      <h1 class="headline">
+        Her Special Day
+        <span class="accent">Is Coming</span>
+      </h1>
+
+      <p class="subtitle">Sesuatu yang indah sedang <em>menunggumu</em>.</p>
+
+      <div class="countdown" id="countdown">
+        <div class="unit">
+          <div class="unit-num" id="days">00</div>
+          <div class="unit-label">Hari</div>
+        </div>
+        <div class="colon">:</div>
+        <div class="unit">
+          <div class="unit-num" id="hours">00</div>
+          <div class="unit-label">Jam</div>
+        </div>
+        <div class="colon">:</div>
+        <div class="unit">
+          <div class="unit-num" id="minutes">00</div>
+          <div class="unit-label">Menit</div>
+        </div>
+        <div class="colon">:</div>
+        <div class="unit">
+          <div class="unit-num" id="seconds">00</div>
+          <div class="unit-label">Detik</div>
+        </div>
+      </div>
+
+      <div class="footer-note" id="footerNote"></div>
+
+      <button class="reveal-btn" id="revealBtn" disabled>Tunggu Sampai Waktunya</button>
+    </div>
+
+  </div>
+
+  <script>
+    const introStars = document.getElementById("introStars");
+
+    for (let i = 0; i < 80; i++) {
+      const star = document.createElement("div");
+
+      star.style.position = "absolute";
+      star.style.width = "2px";
+      star.style.height = "2px";
+      star.style.borderRadius = "50%";
+      star.style.background = "#fff";
+
+      star.style.left = Math.random() * 100 + "%";
+      star.style.top = Math.random() * 100 + "%";
+
+      star.style.opacity = Math.random();
+
+      star.style.animation =
+        `twinkle ${2 + Math.random() * 3}s infinite`;
+
+      introStars.appendChild(star);
+    }
+    setInterval(() => {
+
+      const heart = document.createElement("div");
+
+      heart.className = "floating-heart";
+      heart.innerHTML = "❤";
+
+      heart.style.left = Math.random() * 100 + "%";
+      heart.style.fontSize =
+        (16 + Math.random() * 20) + "px";
+
+      heart.style.animationDuration =
+        (4 + Math.random() * 3) + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+
+    }, 600);
+    // ---------- Background music ----------
+    const bgMusic = document.getElementById('bgMusic');
+    bgMusic.volume = 0.6;
+
+    function tryPlayMusic() {
+      const playPromise = bgMusic.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          const startOnInteraction = () => {
+            bgMusic.play().catch(() => { });
+            document.removeEventListener('click', startOnInteraction);
+            document.removeEventListener('touchstart', startOnInteraction);
+          };
+          document.addEventListener('click', startOnInteraction, { once: true });
+          document.addEventListener('touchstart', startOnInteraction, { once: true });
+        });
+      }
+    }
+
+
+    // ---------- Starfield generation ----------
+    const starsWrap = document.getElementById('stars');
+    const STAR_COUNT = 60;
+    for (let i = 0; i < STAR_COUNT; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      const size = Math.random() * 2 + 1;
+      s.style.width = size + 'px';
+      s.style.height = size + 'px';
+      s.style.left = Math.random() * 100 + '%';
+      s.style.top = Math.random() * 70 + '%';
+      s.style.animationDelay = (Math.random() * 3.5) + 's';
+      s.style.animationDuration = (2.5 + Math.random() * 3) + 's';
+      starsWrap.appendChild(s);
+    }
+
+    // ---------- Rising sparks ----------
+    const driftWrap = document.getElementById('drift');
+    const SPARK_COUNT = 14;
+    for (let i = 0; i < SPARK_COUNT; i++) {
+      const p = document.createElement('div');
+      p.className = 'spark';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.animationDuration = (6 + Math.random() * 6) + 's';
+      p.style.animationDelay = (Math.random() * 10) + 's';
+      driftWrap.appendChild(p);
+    }
+
+    // ---------- Countdown logic ----------
+    // MODE SIMULASI: target = 1 menit dari sekarang, supaya mudah ditest.
+    // Nanti kalau sudah siap pakai tanggal asli, ganti isi fungsi ini dengan:
+    //
+    // function getTargetDate(){
+    //   const now = new Date();
+    //   let target = new Date(now.getFullYear(), 7, 15, 0, 0, 0); // 7 = Agustus
+    //   if(target.getTime() <= now.getTime()){
+    //     target = new Date(now.getFullYear()+1, 7, 15, 0, 0, 0);
+    //   }
+    //   return target;
+    // }
+    function getTargetDate() {
+      const now = new Date();
+      return new Date(2026, 7, 15, 0, 0, 0); // simulasi: +1 menit
+    }
+
+    const targetDate = getTargetDate();
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    const footerNote = document.getElementById('footerNote');
+    const revealBtn = document.getElementById('revealBtn');
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function tick() {
+      const now = new Date();
+      const diff = targetDate.getTime() - now.getTime();
+
+      if (diff <= 0) {
+        daysEl.textContent = '00';
+        hoursEl.textContent = '00';
+        minutesEl.textContent = '00';
+        secondsEl.textContent = '00';
+        footerNote.textContent = 'Waktunya sudah tiba';
+        revealBtn.disabled = false;
+        revealBtn.classList.add('ready');
+        revealBtn.textContent = 'Open The Gift';
+        clearInterval(timer);
+        return;
+      }
+
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const m = Math.floor((diff / (1000 * 60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+
+      daysEl.textContent = pad(d);
+      hoursEl.textContent = pad(h);
+      minutesEl.textContent = pad(m);
+      secondsEl.textContent = pad(s);
+
+      // Pesan dinamis mengikuti sisa waktu
+      if (diff > 5 * 60 * 1000) {
+        footerNote.textContent = '';
+      } else if (diff > 60 * 1000) {
+        footerNote.textContent = 'Beberapa menit lagi...';
+      } else {
+        footerNote.textContent = 'Beberapa detik lagi...';
+      }
+    }
+
+    tick();
+    const timer = setInterval(tick, 1000);
+
+    // ---------- Go to next page ----------
+    // Ganti fungsi ini nanti agar berpindah ke halaman/section berikutnya,
+    // misalnya: window.location.href = 'halaman-2.html';
+    /* ==========================
+   INTRO SCREEN
+========================== */
+
+    const introScreen = document.getElementById('introScreen');
+    const startBtn = document.getElementById('startBtn');
+    const typingName = document.getElementById('typingName');
+
+    const fullName = "Kheisya Ledyka br. Karo";
+
+    let typingIndex = 0;
+
+    function typeWriter() {
+      if (typingIndex < fullName.length) {
+        typingName.textContent += fullName.charAt(typingIndex);
+        typingIndex++;
+        setTimeout(typeWriter, 120);
+      }
+    }
+
+    typeWriter();
+    const stage = document.getElementById('stage');
+    startBtn.addEventListener('click', async () => {
+
+      try {
+        await bgMusic.play();
+      } catch (e) {
+        console.log(e);
+      }
+
+      // tampilkan countdown page
+      stage.style.display = "block";
+
+      introScreen.style.transition = "opacity 1s ease";
+      introScreen.style.opacity = "0";
+
+      setTimeout(() => {
+        introScreen.remove();
+      }, 1000);
+
+    });
+  </script>
+
+</body>
+
+</html>
