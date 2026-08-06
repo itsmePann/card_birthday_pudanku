@@ -763,18 +763,6 @@
       driftWrap.appendChild(p);
     }
 
-    // ---------- Countdown logic ----------
-    // MODE SIMULASI: target = 1 menit dari sekarang, supaya mudah ditest.
-    // Nanti kalau sudah siap pakai tanggal asli, ganti isi fungsi ini dengan:
-    //
-    // function getTargetDate(){
-    //   const now = new Date();
-    //   let target = new Date(now.getFullYear(), 7, 15, 0, 0, 0); // 7 = Agustus
-    //   if(target.getTime() <= now.getTime()){
-    //     target = new Date(now.getFullYear()+1, 7, 15, 0, 0, 0);
-    //   }
-    //   return target;
-    // }
     function getTargetDate() {
       const now = new Date();
       return new Date(2026, 7, 15, 0, 0, 0); // simulasi: +1 menit
@@ -829,20 +817,11 @@
 
     tick();
     const timer = setInterval(tick, 1000);
-
-    // ---------- Go to next page ----------
-    // Ganti fungsi ini nanti agar berpindah ke halaman/section berikutnya,
-    // misalnya: window.location.href = 'halaman-2.html';
-    /* ==========================
-   INTRO SCREEN
-========================== */
-
     const introScreen = document.getElementById('introScreen');
     const startBtn = document.getElementById('startBtn');
     const typingName = document.getElementById('typingName');
-
     const fullName = "Kheisya Ledyka br. Karo";
-
+    
     let typingIndex = 0;
 
     function typeWriter() {
